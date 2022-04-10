@@ -109,7 +109,11 @@ body._lock {
     justify-content: space-between;
   }
 }
-
+.header {
+  &__color {
+    background-color: rgba(0, 0, 0, .9);
+  }
+}
 .menu {
   width: 100%;
   &__list {
