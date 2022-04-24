@@ -37,7 +37,7 @@ body._lock {
 /*-------------------------------------------------------------*/
 
 ._container {
-  max-width: 1400px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0px 10px;
 }
@@ -59,9 +59,8 @@ body._lock {
   font-size: 36px;
   line-height: 150%;
   font-weight: 700;
-  margin: 20px auto 40px;
+  margin: 20px auto 20px;
   text-align: center;
-  //margin-bottom: 60px;
 
   @media (max-width: 600px) {
     font-size: 32px;
@@ -84,8 +83,9 @@ body._lock {
 ._button {
   transition: 0.3s;
   max-width: 500px;
-  font-size: 20px;
-  padding: 20px 50px;
+  font-size: 26px;
+  padding: 30px 60px;
+  border-radius: 8px;
   background-color: $blue-color;
   color: $white-color;
   font-weight: 600;
@@ -279,7 +279,7 @@ body._lock {
 .page__home {
   position: relative;
   color: $white-color;
-  background-color: $black-color;
+  min-height: 100vh;
 }
 
 .home {
@@ -303,7 +303,6 @@ body._lock {
     font-weight: bold;
     font-size: 56px;
     line-height: 130%;
-    margin-bottom: 40px;
 
     @media (max-width: 1024px) {
       font-size: 42px;
@@ -322,17 +321,20 @@ body._lock {
     }
   }
 
-  &__button {
-    font-size: 26px;
-    padding: 30px 60px;
-    border-radius: 60px;
-  }
-
   &__text {
     font-size: 26px;
     line-height: 130%;
     margin-bottom: 60px;
   }
+
+    &__image {
+      position: absolute;
+      filter: brightness(40%);
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+    }
 }
 
 .circle {
@@ -340,6 +342,7 @@ body._lock {
   background: $blue-color;
   border-radius: 50%;
   z-index: -10;
+  opacity: 0.15;
 
   @media (max-width: 767px) {
     display: none;
@@ -399,26 +402,23 @@ body._lock {
 /*-------------------------------------------------------------*/
 .comments {
   background-color: #f2f2f2;
+  overflow: auto;
 }
 
 .comments__container {
   padding-bottom: 40px;
 }
 
-.comments__title {
-  padding-top: 20px;
-}
-
 .comments__content {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 40px 40px;
-  margin: 40px auto 0;
+  gap: 26px 50px;
+  margin: 20px auto 0;
   max-width: 1100px;
   padding: 30px;
   background-color: #fff;
-  border-radius: 10px;
+  border-radius: 6px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
@@ -426,6 +426,11 @@ body._lock {
   max-width: 360px;
   max-height: 360px;
   border-radius: 5px;
+
+  @media (max-width: 430px) {
+    width: 95%;
+    height: 95%;
+  }
 }
 
 .comments__text-image {
@@ -510,6 +515,7 @@ body._lock {
   color: $white-color;
   padding: 100px 0px;
   position: relative;
+  min-height: 100vh;
 }
 
 .statistics {
@@ -542,6 +548,7 @@ body._lock {
   }
 
   &__text {
+    margin: auto;
     max-width: 500px;
     font-size: 20px;
   }
@@ -560,7 +567,6 @@ body._lock {
 /*-----Map-----------------------------------------------------*/
 /*-------------------------------------------------------------*/
 .map__container {
-  padding-top: 10px;
   padding-bottom: 50px;
 }
 
@@ -568,8 +574,9 @@ body._lock {
 /*-----Best----------------------------------------------------*/
 /*-------------------------------------------------------------*/
 .page__best {
-  padding: 30px 0px 70px;
+  padding: 1px 0 70px;
   background-color: #f2f2f2;
+  overflow: auto;
 }
 
 .best__container {
@@ -689,6 +696,9 @@ body._lock {
 }
 
 @media (max-width: 768px) {
+  .page__best {
+    padding-bottom: 0;
+  }
   .best__item:nth-child(even) {
     position: static;
   }
@@ -722,11 +732,9 @@ body._lock {
     font-size: 20px;
   }
 }
-@media (max-width: 768px) {
-  .best__item,
-  .best__item:nth-child(even) {
-    width: 95%;
-    margin: 0 auto 30px auto;
+@media (max-width: 366px) {
+  .city__line--300 {
+    width: 100%;
   }
 }
 /*-------------------------------------------------------------*/
@@ -761,9 +769,7 @@ body._lock {
   &__button {
     display: block;
     margin: 0 auto;
-    font-size: 22px;
     padding: 25px 50px;
-    border-radius: 60px;
   }
 
   &__image {
@@ -780,14 +786,36 @@ body._lock {
 /*-----Team----------------------------------------------------*/
 /*-------------------------------------------------------------*/
 .page__team {
-  background-color: $black-color;
+  background-color: #141414;
   color: $white-color;
   padding: 50px 0px;
+
+  @media (max-width: 1024px) {
+    padding: 30px 0px;
+  }
+  @media (max-width: 530px) {
+    padding: 10px 0px;
+  }
 }
 
 .team__title {
   font-size: 48px;
   max-width: 1100px;
+  @media (max-width: 1024px) {
+    font-size: 42px;
+  }
+  
+  @media (max-width: 850px) {
+    font-size: 36px;
+  }
+  
+  @media (max-width: 767px) {
+    font-size: 30px;
+  }
+    
+  @media (max-width: 530px) {
+    font-size: 25px;
+  }
 }
 
 .team__subtitle {
@@ -797,6 +825,15 @@ body._lock {
   margin: 0 auto;
   text-align: center;
   margin-bottom: 80px;
+  @media (max-width: 1024px) {
+    font-size: 30px;
+    margin-bottom: 40px;
+  }
+  
+  @media (max-width: 850px) {
+    font-size: 25px;
+    margin-bottom: 20px;
+  }
 }
 
 .team__list {
@@ -804,7 +841,7 @@ body._lock {
   align-items: baseline;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 50px 70px;
+  gap: 100px 90px;
 }
 
 .team__item {
@@ -814,8 +851,8 @@ body._lock {
 .employee__image {
   border-radius: 5px;
   display: block;
-  width: 300px;
-  height: 300px;
+  width: 160px;
+  height: 160px;
   margin: 0 auto;
   margin-bottom: 20px;
 }

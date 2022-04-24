@@ -68,7 +68,27 @@
               </button>
             </a>
           </div>
+        </div>
+        <div class="home__image _ibg">
+          <img src="https://thumb.tildacdn.com/tild6661-3966-4433-b033-656461616564/-/format/webp/1024-576-max.jpg"
+            alt="Фоновое изображение" title="Изображение дорожного движения"/>
         </div>        
+      </section>
+
+      <section class="page__comments comments">
+        <div class="comments__container _container">
+          <h2 class="comments__title _main-title">РУКОВОДИТЕЛИ</h2>
+          {% for boss in bosses_list %}
+          <div class="comments__content">
+            <img class="comments__image" src="{{ boss.image.url }}" />
+            <div class="comments__text-image">
+              <h3 class="comments__initials"><b>{{ boss.name }}</b></h3>
+              <h4 class="comments__position">{{ boss.position }}</h4>
+              <p class="comments__paragraph">— {{ boss.quote }}</p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
       </section>
 
       <section class="page__about about">
@@ -120,22 +140,6 @@
               <p class="about__paragraph">Время просмотра — 40 минут.</p>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section class="page__comments comments">
-        <div class="comments__container _container">
-          <h2 class="comments__title _main-title">РУКОВОДИТЕЛИ</h2>
-          {% for boss in bosses_list %}
-          <div class="comments__content">
-            <img class="comments__image" src="{{ boss.image.url }}" />
-            <div class="comments__text-image">
-              <h3 class="comments__initials"><b>{{ boss.name }}</b></h3>
-              <h4 class="comments__position">{{ boss.position }}</h4>
-              <p class="comments__paragraph">— {{ boss.quote }}</p>
-            </div>
-          </div>
-          {% endfor %}
         </div>
       </section>
 
@@ -277,8 +281,6 @@
         </div>
       </section>
     </main>
-
-    <hr size="8" width="100%" color="#6f80ff">
 
     <footer class="footer">
       <div class="footer__container _container">
