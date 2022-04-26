@@ -39,14 +39,20 @@
   <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
   <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
 </head>
-
+<div id = "toTop" >
+      <img class="arrow" src="../../static/simetra_app/main_page/assets/img/arrow-up.svg" alt="Наверх">
+    </div>
 <body>
   <div class="wrapper">
-    <header class="header">
+    
+
+    <header id="top" class="header">
       <div class="header__container _container">
         {% include 'simetra_app/navbar.html' %}
       </div>
     </header>
+
+    
 
     <main class="page">
       <section class="page__home home">
@@ -361,6 +367,8 @@
   </div>
   <script src="{% static 'simetra_app/main_page/scripts/menu-burger.js' %}"></script>
   <script src="{% static 'simetra_app/main_page/scripts/navbar.js' %}"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script src="{% static 'simetra_app/main_page/scripts/scroll-up.js' %}"></script>
 </body>
 
 </html>
