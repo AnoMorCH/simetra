@@ -708,6 +708,7 @@ body._lock {
   padding: 100px 0px;
   position: relative;
   min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .statistics__body {
@@ -949,6 +950,9 @@ body._lock {
   color: #ffffff;
   padding: 100px 0px;
   position: relative;
+  background-position: center;
+  min-height: 400px;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .download__body {
