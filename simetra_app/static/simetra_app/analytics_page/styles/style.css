@@ -89,6 +89,16 @@ h6 {
   font-weight: 400;
 }
 
+.hide {
+  opacity: 0;
+  -webkit-transition: .9s opacity ease-in-out;
+  transition: .9s opacity ease-in-out;
+}
+
+.visible {
+  opacity: 1;
+}
+
 /*--------------------------------------------------------*/
 /*-------------------------------------------------------------*/
 /*-----HEADER--------------------------------------------------*/
@@ -494,3 +504,4 @@ body {
 canvas {
   margin-bottom: 100px;
 }
+/*# sourceMappingURL=style.css.map */
