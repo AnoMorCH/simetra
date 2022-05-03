@@ -125,6 +125,7 @@ function dataVisualization() {
       // },
       options: {
         responsive: true,
+        maintainAspectRatio: false,
         scales: {
           color: "#ffffff",
         },
@@ -137,6 +138,7 @@ function dataVisualization() {
             },
           },
           legend: {
+            onClick: null,
             position: "top",
             labels: {
               font: {
@@ -186,6 +188,7 @@ function dataVisualization() {
             },
           },
           legend: {
+            onClick: null,
             position: "top",
             labels: {
               color: fontColor,
@@ -239,6 +242,7 @@ function dataVisualization() {
             },
           },
           legend: {
+            onClick: null,
             position: "top",
             labels: {
               color: fontColor,
@@ -318,6 +322,7 @@ function dataVisualization() {
             },
           },
           legend: {
+            onClick: null,
             position: "top",
             labels: {
               color: fontColor,
@@ -335,82 +340,6 @@ function dataVisualization() {
     return config;
   }
 
-  // backgroundColor: [
-  //   "#FFB1C1",
-  //   "#9AD0F5",
-  //   "#FFE6AA",
-  //   "#A5DFDF",
-  //   "#CCB2FF",
-  // ],
-  // borderColor: ["#FF6384", "#36A2EB", "#FFCE56",'#4BC0C0','#B18AE0'],
-  // borderWidth: 3,
-
-  /*-------------------------------------------------------------*/
-  /*-----Horizontal bar------------------------------------------*/
-  /*-------------------------------------------------------------*/
-
-  // function generateLabels(arrField, start, end) {
-  //   let labels = [];
-  //   for (let i = start; i < end; i++) {
-  //     const buffName = arrField[i][0];
-  //     labels.push(cityAttributeName[`${buffName}`]);
-  //     if (arrField[i][1] !== 0) {
-  //       labels.push(cityAttributeName[`${buffName}`]);
-  //     } else {
-  //       nameUnusedProperties.push(cityAttributeName[`${buffName}`]);
-  //     }
-  //   }
-  //   return labels;
-  // }
-
-  function createHorizontalBar(
-    groupArr,
-    start,
-    end,
-    mainLabel,
-    fontColor = "black"
-  ) {
-    const data = {
-      labels: mainLabel,
-      datasets: [
-        {
-          label: generateLabels(groupArr, start, end),
-          data: generateDatas(groupArr, start, end),
-          backgroundColor: ["#93ABE8", "#FF9840", "#CVF1240"],
-          borderColor: ["#456DD0", "#F43270", "#F4570"],
-        },
-      ],
-    };
-
-    const config = {
-      type: "bar",
-      data: data,
-      options: {
-        indexAxis: "y",
-        elements: {
-          bar: {
-            borderWidth: 2,
-          },
-        },
-        responsive: true,
-        plugins: {
-          legend: {
-            position: "top",
-            labels: {
-              color: fontColor,
-              font: {
-                size: 20,
-              },
-            },
-          },
-          title: {
-            display: true,
-          },
-        },
-      },
-    };
-    return config;
-  }
 
   function checkDataGroupForNull(arrField, start, end) {
     let counter = 0;
@@ -440,10 +369,13 @@ function dataVisualization() {
   /*-------------------------------------------------------------*/
   /*-------------------------------------------------------------*/
   function addChartToPage(nameGroup, index) {
+    const chartWrapper = document.createElement("div");
+    chartWrapper.classList.add('_chart-wrapper');
     const newChart = document.createElement("canvas");
     const groupContainer = document.querySelector(`.${nameGroup}__container`);
     newChart.id = `${nameGroup}-${index}`;
-    groupContainer.appendChild(newChart);
+    groupContainer.appendChild(chartWrapper);
+    chartWrapper.appendChild(newChart);
   }
 
   /*-------------------------------------------------------------*/
@@ -528,6 +460,7 @@ function dataVisualization() {
   /*-------------------------------------------------------------*/
   /*-----Quality-------------------------------------------------*/
   /*-------------------------------------------------------------*/
+
 
   addChartToPage("quality", 1);
   new Chart(
@@ -775,12 +708,12 @@ function dataVisualization() {
   routesCounter++;
   checkDataGroupForNull(routes, 18, 20);
 
-  routesCounter++;
-  addChartToPage("routes", routesCounter);
-  new Chart(
-    document.getElementById(`routes-${routesCounter}`),
-    createHorizontalBar(routes, 20, 22, ["Маршрут"], "white")
-  );
+  // routesCounter++;
+  // addChartToPage("routes", routesCounter);
+  // new Chart(
+  //   document.getElementById(`routes-${routesCounter}`),
+  //   createHorizontalBar(routes, 20, 22, ["Маршрут"], "white")
+  // );
 
   ungroupedProperties.push([
     cityAttributeName.length_overall_nonrailed_transport_path,
@@ -808,12 +741,12 @@ function dataVisualization() {
   /*-------------------------------------------------------------*/
   let tariffCounter = 0;
 
-  tariffCounter++;
-  addChartToPage("tariff", tariffCounter);
-  new Chart(
-    document.getElementById(`tariff-${tariffCounter}`),
-    createHorizontalBar(tariffSystem, 7, 10, ["Стоимость"], "black")
-  );
+  // tariffCounter++;
+  // addChartToPage("tariff", tariffCounter);
+  // new Chart(
+  //   document.getElementById(`tariff-${tariffCounter}`),
+  //   createHorizontalBar(tariffSystem, 7, 10, ["Стоимость"], "black")
+  // );
 
   // ungroupedProperties.push([
   //   cityAttributeName.avrg_region_income,
