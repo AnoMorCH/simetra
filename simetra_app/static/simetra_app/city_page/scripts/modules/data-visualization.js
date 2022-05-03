@@ -58,6 +58,54 @@ function dataVisualization() {
   roundingAllValues(allPropertiesCity);
 
   /*-------------------------------------------------------------*/
+  /*-----Generate colors-----------------------------------------*/
+  /*-------------------------------------------------------------*/
+
+  function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
+
+  function generateColors() {
+    const backgroundColor = [
+      "#FFB1C1",
+      "#9AD0F5",
+      "#FFE6AA",
+      "#A5DFDF",
+      "#CCB2FF",
+    ];
+    shuffle(backgroundColor);
+    console.log(backgroundColor);
+    return backgroundColor;
+  }
+
+  function generateBorderColors(backgroundColorArr) {
+    const borderColor = ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#B18AE0"];
+    for (let i = 0; i < backgroundColorArr.length; i++) {
+      switch (backgroundColorArr[i]) {
+        case "#FFB1C1":
+          borderColor[i] = "#FF6384";
+          break;
+        case "#9AD0F5":
+          borderColor[i] = "#36A2EB";
+          break;
+        case "#FFE6AA":
+          borderColor[i] = "#FFCE56";
+          break;
+        case "#A5DFDF":
+          borderColor[i] = "#4BC0C0";
+          break;
+        case "#CCB2FF":
+          borderColor[i] = "#B18AE0";
+          break;
+      }
+    }
+    return borderColor;
+  }
+
+  /*-------------------------------------------------------------*/
   /*-----Generate datas------------------------------------------*/
   /*-------------------------------------------------------------*/
 
@@ -87,19 +135,14 @@ function dataVisualization() {
   /*-----Polar Area----------------------------------------------*/
   /*-------------------------------------------------------------*/
   function createPolarArea(groupArr, start, end) {
+    const backgroundColorArr = generateColors();
     const data = {
       labels: generateLabels(groupArr, start, end),
       datasets: [
         {
           data: generateDatas(groupArr, start, end),
-          backgroundColor: [
-            "#FFB1C1",
-            "#9AD0F5",
-            "#FFE6AA",
-            "#A5DFDF",
-            "#CCB2FF",
-          ],
-          borderColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#B18AE0"],
+          backgroundColor: backgroundColorArr,
+          borderColor: generateBorderColors(backgroundColorArr),
           borderWidth: 3,
         },
       ],
@@ -145,19 +188,14 @@ function dataVisualization() {
   /*-----Pie-----------------------------------------------------*/
   /*-------------------------------------------------------------*/
   function createPie(groupArr, start, end, fontColor = "black") {
+    const backgroundColorArr = generateColors();
     const data = {
       labels: generateLabels(groupArr, start, end),
       datasets: [
         {
           data: generateDatas(groupArr, start, end),
-          backgroundColor: [
-            "#FFB1C1",
-            "#9AD0F5",
-            "#FFE6AA",
-            "#A5DFDF",
-            "#CCB2FF",
-          ],
-          borderColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#B18AE0"],
+          backgroundColor: backgroundColorArr,
+          borderColor: generateBorderColors(backgroundColorArr),
           borderWidth: 3,
         },
       ],
@@ -199,19 +237,14 @@ function dataVisualization() {
   /*-----Doughnut------------------------------------------------*/
   /*-------------------------------------------------------------*/
   function createDoughnut(groupArr, start, end, fontColor = "black") {
+    const backgroundColorArr = generateColors();
     const data = {
       labels: generateLabels(groupArr, start, end),
       datasets: [
         {
           data: generateDatas(groupArr, start, end),
-          backgroundColor: [
-            "#FFB1C1",
-            "#9AD0F5",
-            "#FFE6AA",
-            "#A5DFDF",
-            "#CCB2FF",
-          ],
-          borderColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#B18AE0"],
+          backgroundColor: backgroundColorArr,
+          borderColor: generateBorderColors(backgroundColorArr),
           borderWidth: 3,
         },
       ],
@@ -273,19 +306,14 @@ function dataVisualization() {
   /*-----Pie share-----------------------------------------------*/
   /*-------------------------------------------------------------*/
   function createPieShare(groupArr, start, end, fontColor = "black") {
+    const backgroundColorArr = generateColors();
     const data = {
       labels: generateLabelsShare(groupArr, start, end),
       datasets: [
         {
           data: generateDatasShare(groupArr, start, end),
-          backgroundColor: [
-            "#FFB1C1",
-            "#9AD0F5",
-            "#FFE6AA",
-            "#A5DFDF",
-            "#CCB2FF",
-          ],
-          borderColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#B18AE0"],
+          backgroundColor: backgroundColorArr,
+          borderColor: generateBorderColors(backgroundColorArr),
           borderWidth: 3,
         },
       ],
@@ -353,19 +381,14 @@ function dataVisualization() {
   /*-----Doughnut procent----------------------------------------*/
   /*-------------------------------------------------------------*/
   function createDoughnutProcent(groupArr, start, end, fontColor = "black") {
+    const backgroundColorArr = generateColors();
     const data = {
       labels: generateLabelsProcent(groupArr, start, end),
       datasets: [
         {
           data: generateDatasProcent(groupArr, start, end),
-          backgroundColor: [
-            "#FFB1C1",
-            "#9AD0F5",
-            "#FFE6AA",
-            "#A5DFDF",
-            "#CCB2FF",
-          ],
-          borderColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#B18AE0"],
+          backgroundColor: backgroundColorArr,
+          borderColor: generateBorderColors(backgroundColorArr),
           borderWidth: 3,
         },
       ],
