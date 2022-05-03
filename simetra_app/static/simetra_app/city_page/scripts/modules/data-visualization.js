@@ -258,7 +258,83 @@ function dataVisualization() {
   }
 
   /*-------------------------------------------------------------*/
-  /*-----Generate datas------------------------------------------*/
+  /*-----Generate share charts-----------------------------------*/
+  /*-------------------------------------------------------------*/
+
+  function generateDatasShare(arrField, start, end) {
+    let data = [];
+    for (let i = start; i < end; i++) {
+      data.push(arrField[i][1], 100 - arrField[i][1]);
+    }
+    return data;
+  }
+
+  function generateLabelsShare(arrField, start, end) {
+    let labels = [];
+    for (let i = start; i < end; i++) {
+      labels.push(cityAttributeName[arrField[i][0]], "Оставшаяся часть");
+    }
+    return labels;
+  }
+
+
+  /*-------------------------------------------------------------*/
+  /*-----Pie share-----------------------------------------------*/
+  /*-------------------------------------------------------------*/
+  function createPieShare(groupArr, start, end, fontColor = "black") {
+    const data = {
+      labels: generateLabelsShare(groupArr, start, end),
+      datasets: [
+        {
+          data: generateDatasShare(groupArr, start, end),
+          backgroundColor: [
+            "#FFB1C1",
+            "#9AD0F5",
+            "#FFE6AA",
+            "#A5DFDF",
+            "#CCB2FF",
+          ],
+          borderColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#B18AE0"],
+          borderWidth: 3,
+        },
+      ],
+    };
+
+    const config = {
+      type: "pie",
+      data: data,
+      options: {
+        responsive: true,
+        plugins: {
+          tooltip: {
+            enabled: true,
+            caretSize: 8,
+            bodyFont: {
+              size: 15,
+            },
+          },
+          legend: {
+            onClick: null,
+            position: "top",
+            labels: {
+              color: fontColor,
+              font: {
+                size: 20,
+              },
+            },
+          },
+          title: {
+            display: true,
+          },
+        },
+      },
+    };
+    return config;
+  }
+
+
+  /*-------------------------------------------------------------*/
+  /*-----Generate data procent-----------------------------------*/
   /*-------------------------------------------------------------*/
 
   function generateDatasProcent(arrField, start, end) {
@@ -270,7 +346,7 @@ function dataVisualization() {
   }
 
   function generateLabelsProcent(arrField, start, end) {
-    let data = [];
+    let labels = [];
     for (let i = start; i < end; i++) {
       let re = /исправных/gi;
       let newLabel = cityAttributeName[arrField[i][0]].replace(
@@ -278,9 +354,9 @@ function dataVisualization() {
         "неисправных"
       );
 
-      data.push(cityAttributeName[arrField[i][0]], newLabel);
+      labels.push(cityAttributeName[arrField[i][0]], newLabel);
     }
-    return data;
+    return labels;
   }
 
   /*-------------------------------------------------------------*/
@@ -481,7 +557,7 @@ function dataVisualization() {
     }
   }
 
-  for (let i = 19; i < 23; i++) {
+  for (let i = 19; i < 22; i++) {
     if (spatial[i][1] !== 0) {
       spatialCounter++;
       addChartToPage("spatial", spatialCounter);
@@ -493,6 +569,21 @@ function dataVisualization() {
       nameUnusedProperties.push(cityAttributeName[spatial[i][0]]);
     }
   }
+
+  for (let i = 22; i < 23; i++) {
+    if (spatial[i][1] !== 0) {
+      spatialCounter++;
+      addChartToPage("spatial", spatialCounter);
+      new Chart(
+        document.getElementById(`spatial-${spatialCounter}`),
+        createPieShare(spatial, i, i + 1, "white")
+      );
+    } else {
+      nameUnusedProperties.push(cityAttributeName[spatial[i][0]]);
+    }
+  }
+
+  
 
   spatialCounter++;
   addChartToPage("spatial", spatialCounter);
@@ -553,7 +644,7 @@ function dataVisualization() {
   /*-----Rolling stock-------------------------------------------*/
   /*-------------------------------------------------------------*/
   let rollingStockCounter = 0;
-  
+
   rollingStockCounter++;
   addChartToPage("rolling-stock", rollingStockCounter);
   new Chart(
@@ -616,6 +707,8 @@ function dataVisualization() {
     createDoughnut(rollingStock, 26, 31)
   );
 
+  
+
   rollingStockCounter++;
   addChartToPage("rolling-stock", rollingStockCounter);
   new Chart(
@@ -629,7 +722,7 @@ function dataVisualization() {
       addChartToPage("rolling-stock", rollingStockCounter);
       new Chart(
         document.getElementById(`rolling-stock-${rollingStockCounter}`),
-        createDoughnut(rollingStock, i, i + 1)
+        createPieShare(rollingStock, i, i + 1, "black")
       );
     } else {
       nameUnusedProperties.push(cityAttributeName[rollingStock[i][0]]);
@@ -694,7 +787,7 @@ function dataVisualization() {
     addChartToPage("routes", routesCounter);
     new Chart(
       document.getElementById(`routes-${routesCounter}`),
-      createDoughnut(routes, 15, 16, "white")
+      createPieShare(routes, 15, 16, "white")
     );
   } else {
     nameUnusedProperties.push(cityAttributeName[routes[i][0]]);
@@ -801,6 +894,7 @@ function dataVisualization() {
     }
   }
 
+  
   for (let i = 10; i < 16; i++) {
     if (typeof allPropertiesCity[tariffSystem[i][0]] === "boolean") {
       const boolValue = allPropertiesCity[tariffSystem[i][0]] ? "Есть" : "Нет";
