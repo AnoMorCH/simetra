@@ -14,9 +14,7 @@
 
     <title>{{ name }}</title>
 
-    <!--INCLUDE-->
     <link rel="stylesheet" href="{% static 'simetra_app/city_page/styles/style.css' %}" />
-    <!--INCLUDE-->
     <link rel="apple-touch-icon-precomposed" sizes="57x57"
         href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-57x57.png' %}" />
     <link rel="apple-touch-icon-precomposed" sizes="114x114"
@@ -55,7 +53,6 @@
         content="{% static 'simetra_app/general_assets/favicon/mstile-310x150.png' %}" />
     <meta name="msapplication-square310x310logo"
         content="{% static 'simetra_app/general_assets/favicon/mstile-310x310.png' %}" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
 </head>
 
 <body>
@@ -68,15 +65,6 @@
                 {% include 'simetra_app/navbar.html' %}
             </div>
         </header>
-
-        <div class="overlay">
-            <div class="modal">
-                <h3 class="modal__content">Рекомендуем смотреть рейтинг с устройства, ширина которого не менее 700
-                    пикселей </h3>
-                <button class="modal__close"> <span class="material-icons-outlined">
-                        close </span></button>
-            </div>
-        </div>
 
         <main class="page">
             <section class="page__home home">
@@ -105,7 +93,7 @@
             <section class="page__spatial spatial">
                 <div class="spatial__container _container">
                     <h2 class="spatial__title _title">
-                        Пространственные характеристики </h2>            
+                        Пространственные характеристики </h2>
                 </div>
             </section>
 
@@ -132,6 +120,15 @@
                     </h2>
                 </div>
             </section>
+
+            <div class="overlay">
+                <div class="modal">
+                    <h3 class="modal__content">Рекомендуем смотреть рейтинг с устройства, ширина которого не менее 700
+                        пикселей </h3>
+                    <button class="modal__close"> <img
+                            src="{% static 'simetra_app/city_page/assets/img/close-icon.png' %}">
+                </div>
+            </div>
         </main>
 
 
