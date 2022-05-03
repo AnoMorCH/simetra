@@ -295,16 +295,16 @@ canvas {
 /*-------------------------------------------------------------*/
 
 .tariff {
-  &__container {
-    padding: 100px 0px;
-  }
-
-  &__container {
-    padding: 100px 0px;
-  }
-
-  & canvas:last-child {
+  &__title {
     margin-bottom: 0px;
+  }
+
+  .ungrouped__wrapper {
+    padding: 0px;
+  }
+
+  &__container {
+    padding: 100px 0px;
   }
 }
 
@@ -322,7 +322,7 @@ canvas {
 
 .unused__wrapper h3 {
   text-align: center;
-  font-size: 35px;
+  font-size: 30px;
   font-weight: bold;
   margin-bottom: 30px;
   @media (max-width: 360px) {
@@ -385,7 +385,7 @@ canvas {
 .ungrouped__table caption {
   color: black;
   margin-bottom: 30px;
-  font-size: 35px;
+  font-size: 30px;
   font-weight: bold;
   @media (max-width: 360px) {
     font-size: 26px;

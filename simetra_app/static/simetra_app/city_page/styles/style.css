@@ -685,16 +685,16 @@ canvas {
 /*-------------------------------------------------------------*/
 /*-----Tariff--------------------------------------------------*/
 /*-------------------------------------------------------------*/
-.tariff__container {
-  padding: 100px 0px;
-}
-
-.tariff__container {
-  padding: 100px 0px;
-}
-
-.tariff canvas:last-child {
+.tariff__title {
   margin-bottom: 0px;
+}
+
+.tariff .ungrouped__wrapper {
+  padding: 0px;
+}
+
+.tariff__container {
+  padding: 100px 0px;
 }
 
 /*-------------------------------------------------------------*/
@@ -710,7 +710,7 @@ canvas {
 
 .unused__wrapper h3 {
   text-align: center;
-  font-size: 35px;
+  font-size: 30px;
   font-weight: bold;
   margin-bottom: 30px;
 }
@@ -779,7 +779,7 @@ canvas {
 .ungrouped__table caption {
   color: black;
   margin-bottom: 30px;
-  font-size: 35px;
+  font-size: 30px;
   font-weight: bold;
 }
 
