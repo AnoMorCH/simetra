@@ -609,8 +609,8 @@ body {
 /*-----Charts--------------------------------------------------*/
 /*-------------------------------------------------------------*/
 ._chart-wrapper {
-  max-width: 700px;
-  max-height: 700px;
+  max-width: 950px;
+  max-height: 950px;
   margin: 0 auto;
   margin-bottom: 100px;
 }
