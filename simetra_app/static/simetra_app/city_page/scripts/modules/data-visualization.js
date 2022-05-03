@@ -297,10 +297,10 @@ function dataVisualization() {
     return data;
   }
 
-  function generateLabelsShare(arrField, start, end) {
+  function generateLabelsShare(arrField, start, end, alternativeText) {
     let labels = [];
     for (let i = start; i < end; i++) {
-      labels.push(cityAttributeName[arrField[i][0]], "Оставшаяся часть");
+      labels.push(cityAttributeName[arrField[i][0]], alternativeText);
     }
     return labels;
   }
@@ -308,10 +308,16 @@ function dataVisualization() {
   /*-------------------------------------------------------------*/
   /*-----Pie share-----------------------------------------------*/
   /*-------------------------------------------------------------*/
-  function createPieShare(groupArr, start, end, fontColor = "black") {
+  function createPieShare(
+    groupArr,
+    start,
+    end,
+    fontColor = "black",
+    alternativeText = "Оставшаяся часть"
+  ) {
     const backgroundColorArr = generateColors();
     const data = {
-      labels: generateLabelsShare(groupArr, start, end),
+      labels: generateLabelsShare(groupArr, start, end, alternativeText),
       datasets: [
         {
           data: generateDatasShare(groupArr, start, end),
@@ -592,7 +598,7 @@ function dataVisualization() {
   }
 
   if (flagBuff > 1) {
-    spatialCounter++; 
+    spatialCounter++;
     addChartToPage("spatial", spatialCounter);
     new Chart(
       document.getElementById(`spatial-${spatialCounter}`),
@@ -624,30 +630,60 @@ function dataVisualization() {
     ]);
   }
 
-  for (let i = 19; i < 22; i++) {
-    if (spatial[i][1] !== 0) {
-      spatialCounter++;
-      addChartToPage("spatial", spatialCounter);
-      new Chart(
-        document.getElementById(`spatial-${spatialCounter}`),
-        createDoughnut(spatial, i, i + 1, "white")
-      );
-    } else {
-      nameUnusedProperties.push(cityAttributeName[spatial[i][0]]);
-    }
+  if (spatial[19][1] !== 0) {
+    spatialCounter++;
+    addChartToPage("spatial", spatialCounter);
+    new Chart(
+      document.getElementById(`spatial-${spatialCounter}`),
+      createDoughnut(spatial, 19, 20, "white")
+    );
+  } else {
+    nameUnusedProperties.push(cityAttributeName[spatial[i][0]]);
   }
 
-  for (let i = 22; i < 23; i++) {
-    if (spatial[i][1] !== 0) {
-      spatialCounter++;
-      addChartToPage("spatial", spatialCounter);
-      new Chart(
-        document.getElementById(`spatial-${spatialCounter}`),
-        createPieShare(spatial, i, i + 1, "white")
-      );
-    } else {
-      nameUnusedProperties.push(cityAttributeName[spatial[i][0]]);
-    }
+  if (spatial[20][1] !== 0) {
+    spatialCounter++;
+    addChartToPage("spatial", spatialCounter);
+    new Chart(
+      document.getElementById(`spatial-${spatialCounter}`),
+      createPieShare(
+        spatial,
+        20,
+        21,
+        "white",
+        "Доля населения без доступа к метрополитену"
+      )
+    );
+  } else {
+    nameUnusedProperties.push(cityAttributeName[spatial[20][0]]);
+  }
+
+  if (spatial[21][1] !== 0) {
+    spatialCounter++;
+    addChartToPage("spatial", spatialCounter);
+    new Chart(
+      document.getElementById(`spatial-${spatialCounter}`),
+      createDoughnut(spatial, 21, 22, "white")
+    );
+  } else {
+    nameUnusedProperties.push(cityAttributeName[spatial[i][0]]);
+  }
+
+  if (spatial[22][1] !== 0) {
+    spatialCounter++;
+    addChartToPage("spatial", spatialCounter);
+    new Chart(
+      document.getElementById(`spatial-${spatialCounter}`),
+      createPieShare(
+        spatial,
+        22,
+        23,
+        "white",
+        "Доля населения без доступа к общественному транспорту"
+      )
+    );
+  } else {
+    nameUnusedProperties.push(cityAttributeName[spatial[22][0]]);
   }
 
   spatialCounter++;
@@ -776,17 +812,51 @@ function dataVisualization() {
     createPie(rollingStock, 31, 35)
   );
 
-  for (let i = 37; i < 41; i++) {
-    if (rollingStock[i][1] !== 0) {
-      rollingStockCounter++;
-      addChartToPage("rolling-stock", rollingStockCounter);
-      new Chart(
-        document.getElementById(`rolling-stock-${rollingStockCounter}`),
-        createPieShare(rollingStock, i, i + 1, "black")
-      );
-    } else {
-      nameUnusedProperties.push(cityAttributeName[rollingStock[i][0]]);
-    }
+
+  if (rollingStock[37][1] !== 0) {
+    rollingStockCounter++;
+    addChartToPage("rolling-stock", rollingStockCounter);
+    new Chart(
+      document.getElementById(`rolling-stock-${rollingStockCounter}`),
+      createPieShare(rollingStock, 37, 38, "black", 'Доля ТС без низкопольных площадок')
+    );
+  } else {
+    nameUnusedProperties.push(cityAttributeName[rollingStock[37][0]]);
+  }
+
+
+  if (rollingStock[38][1] !== 0) {
+    rollingStockCounter++;
+    addChartToPage("rolling-stock", rollingStockCounter);
+    new Chart(
+      document.getElementById(`rolling-stock-${rollingStockCounter}`),
+      createPieShare(rollingStock, 38, 39, "black", 'Доля остального ТС')
+    );
+  } else {
+    nameUnusedProperties.push(cityAttributeName[rollingStock[38][0]]);
+  }
+
+
+  if (rollingStock[39][1] !== 0) {
+    rollingStockCounter++;
+    addChartToPage("rolling-stock", rollingStockCounter);
+    new Chart(
+      document.getElementById(`rolling-stock-${rollingStockCounter}`),
+      createPieShare(rollingStock, 39, 40, "black", 'Доля остального транспорта в парке ТС НОТ')
+    );
+  } else {
+    nameUnusedProperties.push(cityAttributeName[rollingStock[39][0]]);
+  }
+
+  if (rollingStock[40][1] !== 0) {
+    rollingStockCounter++;
+    addChartToPage("rolling-stock", rollingStockCounter);
+    new Chart(
+      document.getElementById(`rolling-stock-${rollingStockCounter}`),
+      createPieShare(rollingStock, 40, 41, "black", 'Доля не рабочего ПС в парке ТС')
+    );
+  } else {
+    nameUnusedProperties.push(cityAttributeName[rollingStock[40][0]]);
   }
 
   ungroupedProperties.push([
@@ -843,7 +913,13 @@ function dataVisualization() {
     addChartToPage("routes", routesCounter);
     new Chart(
       document.getElementById(`routes-${routesCounter}`),
-      createPieShare(routes, 15, 16, "white")
+      createPieShare(
+        routes,
+        15,
+        16,
+        "white",
+        "Процент необособленных трамвайных путей"
+      )
     );
   } else {
     nameUnusedProperties.push(cityAttributeName[routes[15][0]]);
