@@ -115,15 +115,14 @@ function dataVisualization() {
     const config = {
       type: "polarArea",
       data: data,
-
-      // overrides: {
-      //   plugins: {
-      //     tooltip: {
-      //       caretSize: 40,
-      //     },
-      //   },
-      // },
       options: {
+        scales: {
+          r: {
+            ticks: {
+              display: false,
+            },
+          },
+        },
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
@@ -277,7 +276,6 @@ function dataVisualization() {
     return labels;
   }
 
-
   /*-------------------------------------------------------------*/
   /*-----Pie share-----------------------------------------------*/
   /*-------------------------------------------------------------*/
@@ -331,7 +329,6 @@ function dataVisualization() {
     };
     return config;
   }
-
 
   /*-------------------------------------------------------------*/
   /*-----Generate data procent-----------------------------------*/
@@ -583,8 +580,6 @@ function dataVisualization() {
     }
   }
 
-  
-
   spatialCounter++;
   addChartToPage("spatial", spatialCounter);
   new Chart(
@@ -706,8 +701,6 @@ function dataVisualization() {
     document.getElementById(`rolling-stock-${rollingStockCounter}`),
     createDoughnut(rollingStock, 26, 31)
   );
-
-  
 
   rollingStockCounter++;
   addChartToPage("rolling-stock", rollingStockCounter);
@@ -894,7 +887,6 @@ function dataVisualization() {
     }
   }
 
-  
   for (let i = 10; i < 16; i++) {
     if (typeof allPropertiesCity[tariffSystem[i][0]] === "boolean") {
       const boolValue = allPropertiesCity[tariffSystem[i][0]] ? "Есть" : "Нет";
