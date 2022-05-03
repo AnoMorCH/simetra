@@ -77,7 +77,6 @@ function dataVisualization() {
       "#CCB2FF",
     ];
     shuffle(backgroundColor);
-    console.log(backgroundColor);
     return backgroundColor;
   }
 
@@ -426,7 +425,14 @@ function dataVisualization() {
     return config;
   }
 
-  function checkDataGroupForNull(arrField, start, end) {
+  function checkDataGroupForNull(
+    arrField,
+    start,
+    end,
+    fieldCounter,
+    nameField,
+    colorLabel = "black"
+  ) {
     let counter = 0;
 
     for (let i = start; i < end; i++) {
@@ -436,14 +442,14 @@ function dataVisualization() {
     }
 
     if (counter === end - start) {
-      for (let i = 18; i < 20; i++) {
+      for (let i = start; i < end; i++) {
         nameUnusedProperties.push(cityAttributeName[arrField[i][0]]);
       }
     } else {
-      addChartToPage(`${arrField}`, routesCounter);
+      addChartToPage(`${nameField}`, fieldCounter);
       new Chart(
-        document.getElementById(`${chartName}-${routesCounter}`),
-        createDoughnut(routes, 18, 20, "white")
+        document.getElementById(`${nameField}-${fieldCounter}`),
+        createDoughnut(arrField, start, end, colorLabel)
       );
     }
   }
@@ -698,25 +704,22 @@ function dataVisualization() {
   );
 
   rollingStockCounter++;
-  addChartToPage("rolling-stock", rollingStockCounter);
-  new Chart(
-    document.getElementById(`rolling-stock-${rollingStockCounter}`),
-    createPie(rollingStock, 20, 23)
+  checkDataGroupForNull(
+    rollingStock,
+    20,
+    23,
+    rollingStockCounter,
+    "rolling-stock"
   );
 
-  ///
-  // rollingStockCounter++;
-  // addChartToPage("rolling-stock", rollingStockCounter);
-  // new Chart(
-  //   document.getElementById(`rolling-stock-${rollingStockCounter}`),
-  //   createDoughnut(rollingStock, 23, 26)
-  // );
-
-  ///
   rollingStockCounter++;
-  checkDataGroupForNull(rollingStock, 23, 26);
-  // checkDataGroupForNull(rollingStock, 23, 26, 'rolling-stock');
-  ///
+  checkDataGroupForNull(
+    rollingStock,
+    23,
+    26,
+    rollingStockCounter,
+    "rolling-stock"
+  );
 
   rollingStockCounter++;
   addChartToPage("rolling-stock", rollingStockCounter);
@@ -792,14 +795,12 @@ function dataVisualization() {
   );
 
   routesCounter++;
-  addChartToPage("routes", routesCounter);
-  new Chart(
-    document.getElementById(`routes-${routesCounter}`),
-    createDoughnut(routes, 10, 14, "white")
-  );
+  checkDataGroupForNull(routes, 10, 14, routesCounter, "routes", "white");
 
+  console.log(routesCounter);
+
+  routesCounter++;
   if (routes[15][1] !== 0) {
-    routesCounter++;
     addChartToPage("routes", routesCounter);
     new Chart(
       document.getElementById(`routes-${routesCounter}`),
@@ -810,7 +811,7 @@ function dataVisualization() {
   }
 
   routesCounter++;
-  checkDataGroupForNull(routes, 18, 20);
+  checkDataGroupForNull(routes, 18, 20, routesCounter, "routes", "white");
 
   ungroupedProperties.push([
     cityAttributeName.time_avrg_waiting_any_transport,
@@ -840,7 +841,6 @@ function dataVisualization() {
   }
 
   displayUngroupedProperties(".routes__container");
-
   displayUnusedProperties(".routes__container");
 
   /*-------------------------------------------------------------*/
