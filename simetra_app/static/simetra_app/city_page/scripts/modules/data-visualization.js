@@ -80,6 +80,10 @@ function dataVisualization() {
     return backgroundColor;
   }
 
+  /*-------------------------------------------------------------*/
+  /*-----Generate border colors----------------------------------*/
+  /*-------------------------------------------------------------*/
+
   function generateBorderColors(backgroundColorArr) {
     const borderColor = ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#B18AE0"];
     for (let i = 0; i < backgroundColorArr.length; i++) {
@@ -296,7 +300,6 @@ function dataVisualization() {
   function generateLabelsShare(arrField, start, end) {
     let labels = [];
     for (let i = start; i < end; i++) {
-      console.log(cityAttributeName[arrField[i][0]]);
       labels.push(cityAttributeName[arrField[i][0]], "Оставшаяся часть");
     }
     return labels;
@@ -577,7 +580,44 @@ function dataVisualization() {
     }
   }
 
-  for (let i = 10; i < 16; i++) {
+  /////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////
+
+  let flagBuff = 0;
+  for (let i = 10; i < 13; i++) {
+    if (spatial[i][1] !== 0) {
+      flagBuff++;
+    }
+  }
+
+  if (flagBuff > 1) {
+    spatialCounter++; 
+    addChartToPage("spatial", spatialCounter);
+    new Chart(
+      document.getElementById(`spatial-${spatialCounter}`),
+      createDoughnut(spatial, 10, 13, "white")
+    );
+  } else {
+    ungroupedProperties.push([
+      cityAttributeName[spatial[10][0]],
+      allPropertiesCity[spatial[10][0]],
+    ]);
+    ungroupedProperties.push([
+      cityAttributeName[spatial[11][0]],
+      allPropertiesCity[spatial[11][0]],
+    ]);
+    ungroupedProperties.push([
+      cityAttributeName[spatial[12][0]],
+      allPropertiesCity[spatial[12][0]],
+    ]);
+  }
+
+  /////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////
+
+  for (let i = 13; i < 16; i++) {
     ungroupedProperties.push([
       cityAttributeName[spatial[i][0]],
       allPropertiesCity[spatial[i][0]],
