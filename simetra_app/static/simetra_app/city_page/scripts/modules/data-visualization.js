@@ -638,7 +638,7 @@ function dataVisualization() {
       createDoughnut(spatial, 19, 20, "white")
     );
   } else {
-    nameUnusedProperties.push(cityAttributeName[spatial[i][0]]);
+    nameUnusedProperties.push(cityAttributeName[spatial[19][0]]);
   }
 
   if (spatial[20][1] !== 0) {
@@ -666,7 +666,7 @@ function dataVisualization() {
       createDoughnut(spatial, 21, 22, "white")
     );
   } else {
-    nameUnusedProperties.push(cityAttributeName[spatial[i][0]]);
+    nameUnusedProperties.push(cityAttributeName[spatial[21][0]]);
   }
 
   if (spatial[22][1] !== 0) {
