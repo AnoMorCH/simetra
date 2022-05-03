@@ -79,15 +79,15 @@ function dataVisualization() {
   }
 
   function generateLabels(arrField, start, end) {
-    let data = [];
+    let labels = [];
     for (let i = start; i < end; i++) {
       if (arrField[i][1] !== 0) {
-        data.push(cityAttributeName[arrField[i][0]]);
+        labels.push(cityAttributeName[arrField[i][0]]);
       } else {
         nameUnusedProperties.push(cityAttributeName[arrField[i][0]]);
       }
     }
-    return data;
+    return labels;
   }
 
   /*-------------------------------------------------------------*/
@@ -126,9 +126,6 @@ function dataVisualization() {
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        scales: {
-          color: "#ffffff",
-        },
         plugins: {
           tooltip: {
             enabled: true,
@@ -557,6 +554,80 @@ function dataVisualization() {
   /*-------------------------------------------------------------*/
   let rollingStockCounter = 0;
 
+  function generateLabels2(arrField, start, end) {
+    let data = [];
+    for (let i = start; i < end; i++) {
+      if (arrField[i][1] !== 0) {
+        data.push(cityAttributeName[arrField[i][0]]);
+        console.log(cityAttributeName[arrField[i][0]]);
+      } else {
+
+        nameUnusedProperties.push(cityAttributeName[arrField[i][0]]);
+      }
+    }
+    return data;
+  }
+
+  function createPie2(groupArr, start, end, fontColor = "black") {
+    const data = {
+      labels: generateLabels2(groupArr, start, end),
+      datasets: [
+        {
+          data: generateDatas(groupArr, start, end),
+          backgroundColor: [
+            "#FFB1C1",
+            "#9AD0F5",
+            "#FFE6AA",
+            "#A5DFDF",
+            "#CCB2FF",
+          ],
+          borderColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#B18AE0"],
+          borderWidth: 3,
+        },
+      ],
+    };
+
+    const config = {
+      type: "pie",
+      data: data,
+      options: {
+        responsive: true,
+        plugins: {
+          tooltip: {
+            enabled: true,
+            caretSize: 8,
+            bodyFont: {
+              size: 15,
+            },
+          },
+          legend: {
+            onClick: null,
+            position: "top",
+            labels: {
+              color: fontColor,
+              font: {
+                size: 20,
+              },
+            },
+          },
+          title: {
+            display: true,
+          },
+        },
+      },
+    };
+    return config;
+  }
+
+
+  rollingStockCounter++;
+  addChartToPage("rolling-stock", rollingStockCounter);
+  new Chart(
+    document.getElementById(`rolling-stock-${rollingStockCounter}`),
+    createPie2(rollingStock, 0, 5)
+  );
+
+
   rollingStockCounter++;
   addChartToPage("rolling-stock", rollingStockCounter);
   new Chart(
@@ -748,10 +819,7 @@ function dataVisualization() {
   //   document.getElementById(`tariff-${tariffCounter}`),
   //   createHorizontalBar(tariffSystem, 7, 10, ["Стоимость"], "black")
   // );
-  
-  console.log(tariffSystem[7])
-  console.log(tariffSystem[8])
-  console.log(tariffSystem[9])
+
 
   ungroupedProperties.push([
     cityAttributeName.price_one_time_ticket,
