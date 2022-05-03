@@ -340,7 +340,6 @@ function dataVisualization() {
     return config;
   }
 
-
   function checkDataGroupForNull(arrField, start, end) {
     let counter = 0;
 
@@ -370,7 +369,7 @@ function dataVisualization() {
   /*-------------------------------------------------------------*/
   function addChartToPage(nameGroup, index) {
     const chartWrapper = document.createElement("div");
-    chartWrapper.classList.add('_chart-wrapper');
+    chartWrapper.classList.add("_chart-wrapper");
     const newChart = document.createElement("canvas");
     const groupContainer = document.querySelector(`.${nameGroup}__container`);
     newChart.id = `${nameGroup}-${index}`;
@@ -460,7 +459,6 @@ function dataVisualization() {
   /*-------------------------------------------------------------*/
   /*-----Quality-------------------------------------------------*/
   /*-------------------------------------------------------------*/
-
 
   addChartToPage("quality", 1);
   new Chart(
@@ -708,12 +706,15 @@ function dataVisualization() {
   routesCounter++;
   checkDataGroupForNull(routes, 18, 20);
 
-  // routesCounter++;
-  // addChartToPage("routes", routesCounter);
-  // new Chart(
-  //   document.getElementById(`routes-${routesCounter}`),
-  //   createHorizontalBar(routes, 20, 22, ["Маршрут"], "white")
-  // );
+  ungroupedProperties.push([
+    cityAttributeName.time_avrg_waiting_any_transport,
+    allPropertiesCity.time_avrg_waiting_any_transport,
+  ]);
+
+  ungroupedProperties.push([
+    cityAttributeName.time_avrg_waiting_specific_transport,
+    allPropertiesCity.time_avrg_waiting_specific_transport,
+  ]);
 
   ungroupedProperties.push([
     cityAttributeName.length_overall_nonrailed_transport_path,
@@ -747,7 +748,25 @@ function dataVisualization() {
   //   document.getElementById(`tariff-${tariffCounter}`),
   //   createHorizontalBar(tariffSystem, 7, 10, ["Стоимость"], "black")
   // );
+  
+  console.log(tariffSystem[7])
+  console.log(tariffSystem[8])
+  console.log(tariffSystem[9])
 
+  ungroupedProperties.push([
+    cityAttributeName.price_one_time_ticket,
+    allPropertiesCity.price_one_time_ticket,
+  ]);
+
+  ungroupedProperties.push([
+    cityAttributeName.price_one_time_ticket_discount,
+    allPropertiesCity.price_one_time_ticket_discount,
+  ]);
+
+  ungroupedProperties.push([
+    cityAttributeName.price_transfer_pass,
+    allPropertiesCity.price_transfer_pass,
+  ]);
   // ungroupedProperties.push([
   //   cityAttributeName.avrg_region_income,
   //   allPropertiesCity.avrg_region_income,
