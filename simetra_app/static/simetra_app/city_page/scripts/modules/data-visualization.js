@@ -173,7 +173,7 @@ function dataVisualization() {
             position: "top",
             labels: {
               font: {
-                size: 20,
+                size: 16,
               },
             },
           },
@@ -219,7 +219,7 @@ function dataVisualization() {
             labels: {
               color: fontColor,
               font: {
-                size: 20,
+                size: 18,
               },
             },
           },
@@ -268,7 +268,7 @@ function dataVisualization() {
             labels: {
               color: fontColor,
               font: {
-                size: 20,
+                size: 18,
               },
             },
           },
@@ -296,6 +296,7 @@ function dataVisualization() {
   function generateLabelsShare(arrField, start, end) {
     let labels = [];
     for (let i = start; i < end; i++) {
+      console.log(cityAttributeName[arrField[i][0]]);
       labels.push(cityAttributeName[arrField[i][0]], "Оставшаяся часть");
     }
     return labels;
@@ -337,7 +338,7 @@ function dataVisualization() {
             labels: {
               color: fontColor,
               font: {
-                size: 20,
+                size: 18,
               },
             },
           },
@@ -412,7 +413,7 @@ function dataVisualization() {
             labels: {
               color: fontColor,
               font: {
-                size: 20,
+                size: 18,
               },
             },
           },
@@ -796,8 +797,6 @@ function dataVisualization() {
 
   routesCounter++;
   checkDataGroupForNull(routes, 10, 14, routesCounter, "routes", "white");
-
-  console.log(routesCounter);
 
   routesCounter++;
   if (routes[15][1] !== 0) {
